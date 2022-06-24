@@ -1,0 +1,40 @@
+<header class="flex items-center justify-between py-10">
+  <div>
+    <a href="/" aria-label="Homepage Link">
+      <div class="flex items-center justify-between">
+        <div class="mr-3">
+          <img src="//via.placeholder.com/75" alt="Logo">
+        </div>
+        <div class="hidden h-6 text-2xl font-semibold sm:block">
+          Nick's Blog
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="flex items-center text-base leading-5">
+    <div class="hidden sm:block">
+      <a href="/blog" class="p-1 font-medium text-gray-900 dark:text-gray-100 sm:p-4">
+        Blog
+      </a>
+      <a href="/blog" class="p-1 font-medium text-gray-900 dark:text-gray-100 sm:p-4">
+        Tags
+      </a>
+      <a href="/blog" class="p-1 font-medium text-gray-900 dark:text-gray-100 sm:p-4">
+        Projects
+      </a>
+      <a href="/about" class="p-1 font-medium text-gray-900 dark:text-gray-100 sm:p-4">
+        About
+      </a>
+    </div>
+    <button
+      aria-label="Toggle Dark Mode"
+      type="button"
+      class="ml-1 mr-1 h-8 w-8 rounded p-1 sm:ml-4"
+      data-action="click->dark-mode#toggle"
+    >
+      <i class="fa-solid fa-moon" data-dark-mode-target="icon"></i>
+    </button>
+    <%# <ThemeSwitch />
+    <MobileNav /> %>
+  </div>
+</header>
