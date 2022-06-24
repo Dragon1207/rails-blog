@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = [ "html", "icon" ]
 
-  initialize() {
+  connect() {
     this.darkMode = localStorage.getItem("darkMode") === "true" || false;
     if (this.darkMode) {
       this.enableDarkMode();
