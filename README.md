@@ -1,24 +1,36 @@
-# README
+# Nick's Blog
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This repo contains the rails app used to render Nick's Blog.
 
-Things you may want to cover:
+## Developing
+### Prerequisites
+Please install the following:
+- [Ruby](https://www.ruby-lang.org/en/downloads/)
+  - Feel free to use [RVM](https://rvm.io/) or [Rbenv (recommended)](https://github.com/rbenv/rbenv) for version management
+- [NodeJS](https://nodejs.org/en/)
+  - Feel free to use [NVM](https://github.com/creationix/nvm) or [Nodenv (recommended)](https://github.com/nodenv/nodenv) for version management
+- [Postgres.app](https://postgresapp.com/)
+- [Optional] [Redis.app](https://jpadilla.github.io/redisapp/)
+- [Optional] [Medis](http://getmedis.com/)
 
-* Ruby version
+In order to run the project in development, you'll need to install the
+required RubyGems, NPM modules, and set up your Postgres database:
 
-* System dependencies
+```bash
+bundle install
+yarn install
+rails db:setup
+```
 
-* Configuration
+### Running in Development
 
-* Database creation
+We run the tailwind CLI alongside the ruby server, so to run your development environment, use:
+```bash
+bin/dev
+```
 
-* Database initialization
+## Initial Deployment
 
-* How to run the test suite
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/jarydkrish/nicks-blog)
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+[![Deploy to DO](https://www.deploytodo.com/do-btn-blue.svg)](https://cloud.digitalocean.com/apps/new?repo=https://github.com/jarydkrish/nicks-blog/tree/main)
