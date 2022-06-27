@@ -60,6 +60,9 @@ gem "sassc-rails"
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"
 
+# Rack CORS to allow cross-origin HTTP requests
+gem "rack-cors"
+
 # AWS for S3 storage
 gem "aws-sdk-s3", require: false
 
