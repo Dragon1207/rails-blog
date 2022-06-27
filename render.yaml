@@ -10,7 +10,7 @@ services:
     name: nicks-blog
     env: ruby
     buildCommand: "./bin/setup"
-    startCommand: "bundle exec puma -C config/puma.rb"
+    startCommand: "./bin/bundle exec puma -C config/puma.rb"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
