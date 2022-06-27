@@ -14,6 +14,6 @@ class PostsController < ApplicationController
   private
 
   def set_post
-    @post = Post.find_by!(slug: params[:slug])
+    @post = Post.find_by!(slug: params[:slug].downcase)
   end
 end

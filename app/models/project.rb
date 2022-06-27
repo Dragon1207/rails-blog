@@ -1,5 +1,7 @@
 class Project < ApplicationRecord
-  validates :slug, uniqueness: { case_sensitive: false }
+  validates :slug, uniqueness: { case_sensitive: false }, presence: true
+
+  before_validation :generate_slug, on: :create
 
   def generate_slug
     self.slug = name.parameterize unless slug.present?

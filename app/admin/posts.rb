@@ -5,4 +5,10 @@ ActiveAdmin.register Post do
   # Uncomment all parameters which should be permitted for assignment
   #
   permit_params :published, :name, :slug, :description, :keywords, :published_date
+
+  controller do
+    def find_resource
+      scoped_collection.where(slug: params[:id]).first!
+    end
+  end
 end

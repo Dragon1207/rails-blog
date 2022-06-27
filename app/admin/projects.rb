@@ -6,4 +6,10 @@ ActiveAdmin.register Project do
   # Uncomment all parameters which should be permitted for assignment
   #
   permit_params :name, :slug, :description, :url
+
+  controller do
+    def find_resource
+      scoped_collection.where(slug: params[:id]).first!
+    end
+  end
 end
