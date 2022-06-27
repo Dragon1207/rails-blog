@@ -3,7 +3,13 @@
     <a href="/" aria-label="Homepage Link">
       <div class="flex items-center justify-between">
         <div class="mr-3">
-          <img src="//via.placeholder.com/75" alt="Logo">
+          <svg width="30px" viewBox="0 0 78 105" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="fill-black dark:fill-white">
+              <title>Nick Horob</title>
+              <g id="logo" transform="translate(39.000000, 52.500000) scale(-1, 1) rotate(-180.000000) translate(-39.000000, -52.500000) ">
+                  <path d="M62.8,64.5 L62.5,24.1 L54.8,28.6 L47,33.1 L47,38.5 L47,44 L39,44 L31,44 L31,35.2 L31,26.5 L53.6,13.5 C66,6.3 76.6,0.4 77.1,0.2 C77.6,0 78,20.3 78,52.4 L78,105 L70.5,105 L63,105 L62.8,64.5 Z" id="N"></path>
+                  <path d="M0,52.1 L0,0 L7.5,0 L15,0 L15.2,40 L15.5,79.9 L23.3,75.4 L31,70.9 L31,65.5 L31,60 L39,60 L47,60 L47,68.8 L47,77.5 L24.4,90.5 C12.1,97.7 1.5,103.7 1,103.8 C0.4,104 0,85 0,52.1 Z" id="H"></path>
+              </g>
+          </svg>
         </div>
         <div class="hidden h-6 text-2xl font-semibold sm:block">
           Nick's Blog
@@ -13,16 +19,16 @@
   </div>
   <div class="flex items-center text-base leading-5">
     <div class="hidden sm:block">
-      <a href="/blog" class="p-1 font-medium text-gray-900 dark:text-gray-100 sm:p-4">
+      <a href="<%= posts_path %>" class="p-1 font-medium text-gray-900 dark:text-gray-100 sm:p-4">
         Blog
       </a>
-      <a href="/blog" class="p-1 font-medium text-gray-900 dark:text-gray-100 sm:p-4">
+      <a href="<%= tags_path %>" class="p-1 font-medium text-gray-900 dark:text-gray-100 sm:p-4">
         Tags
       </a>
-      <a href="/blog" class="p-1 font-medium text-gray-900 dark:text-gray-100 sm:p-4">
+      <a href="<%= projects_path %>" class="p-1 font-medium text-gray-900 dark:text-gray-100 sm:p-4">
         Projects
       </a>
-      <a href="/about" class="p-1 font-medium text-gray-900 dark:text-gray-100 sm:p-4">
+      <a href="<%= about_path %>" class="p-1 font-medium text-gray-900 dark:text-gray-100 sm:p-4">
         About
       </a>
     </div>
