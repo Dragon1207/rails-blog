@@ -9,6 +9,9 @@ gem "rails", "~> 7.0.3"
 # Add activeadmin for admin panel
 gem "activeadmin"
 
+# Styles for active admin
+gem "arctic_admin"
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 

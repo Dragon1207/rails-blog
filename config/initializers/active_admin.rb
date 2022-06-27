@@ -9,7 +9,7 @@ ActiveAdmin.setup do |config|
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
   #
-  # config.site_title_link = "/"
+  config.site_title_link = "/admin"
 
   # Set an optional image to be displayed for the header
   # instead of a string (overrides :site_title)
@@ -175,17 +175,20 @@ ActiveAdmin.setup do |config|
   # config.favicon = 'favicon.ico'
 
   # == Meta Tags
+  meta_tags_options = { viewport: 'width=device-width, initial-scale=1' }
   #
   # Add additional meta tags to the head element of active admin pages.
   #
   # Add tags to all pages logged in users see:
   #   config.meta_tags = { author: 'My Company' }
+  config.meta_tags = meta_tags_options
 
   # By default, sign up/sign in/recover password pages are excluded
   # from showing up in search engine results by adding a robots meta
   # tag. You can reset the hash of meta tags included in logged out
   # pages:
   #   config.meta_tags_for_logged_out_pages = {}
+  config.meta_tags_for_logged_out_pages = meta_tags_options
 
   # == Removing Breadcrumbs
   #
@@ -333,3 +336,14 @@ ActiveAdmin.setup do |config|
   #
   # config.use_webpacker = true
 end
+
+module AdminPageLayoutOverride
+  def build_active_admin_head
+    super
+    within head do
+      render '/admin/header_additions'
+    end
+  end
+end
+
+ActiveAdmin::Views::Pages::Base.prepend(AdminPageLayoutOverride)
