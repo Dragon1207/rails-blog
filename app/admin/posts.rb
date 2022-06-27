@@ -19,9 +19,34 @@ ActiveAdmin.register Post do
     id_column
     column :name
     actions defaults: false do |post|
-      item 'View', post_path(post), class: 'member_link'
+      item 'View', admin_post_path(post), class: 'member_link'
       item 'Edit', edit_admin_post_path(post), class: 'member_link'
     end
+  end
+
+  show do
+    attributes_table do
+      row :name
+      row :slug
+      row :description
+      row :keywords
+      row :published_date
+      row :published
+      row 'Preview' do
+        link_to 'View Post', post_path(post), class: 'member_link'
+      end
+    end
+
+    if post.content.present?
+      panel 'Content' do
+        raw post.content
+      end
+    else
+      panel 'Content' do
+        'No content'
+      end
+    end
+    active_admin_comments
   end
 
   form do |f|
@@ -33,7 +58,12 @@ ActiveAdmin.register Post do
       input :description, input_html: { rows: '3' }
       input :keywords
     end
-    f.rich_text_area :content
+
+    f.panel 'Content' do
+      f.rich_text_area :content
+    end
+
+    br
     br
 
     f.actions
