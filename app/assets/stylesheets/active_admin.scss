@@ -24,3 +24,16 @@
     width: 100% !important;
   }
 }
+
+.max-width-30-px {
+  @media screen and (min-width: 515px) {
+    max-width: 30px;
+  }
+}
+
+.col-selectable, .col-id {
+  max-width: 30px;
+  @media screen and (min-width: 515px) {
+    max-width: 20px;
+  }
+}

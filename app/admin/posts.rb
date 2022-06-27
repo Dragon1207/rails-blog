@@ -17,6 +17,7 @@ ActiveAdmin.register Post do
   index do
     selectable_column
     id_column
+    column :published, class: 'max-width-30-px'
     column :name
     actions defaults: false do |post|
       item 'View', admin_post_path(post), class: 'member_link'

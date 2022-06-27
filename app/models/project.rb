@@ -1,4 +1,6 @@
 class Project < ApplicationRecord
+  has_one_attached :image
+
   validates :slug, uniqueness: { case_sensitive: false }, presence: true
 
   before_validation :generate_slug, on: :create
