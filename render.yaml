@@ -6,6 +6,7 @@ databases:
 services:
   - type: redis
     name: nicks-redis
+    ipAllowList: []
   - type: web
     name: nicks-blog
     env: ruby
