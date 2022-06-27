@@ -1,7 +1,7 @@
 databases:
   - name: nicks-blog
-    databaseName: nicks-blog
-    user: nicks-blog
+    databaseName: blog
+    user: nick
 
 services:
   - type: web
