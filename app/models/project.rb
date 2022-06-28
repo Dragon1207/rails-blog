@@ -1,5 +1,7 @@
 class Project < ApplicationRecord
-  has_one_attached :image
+  has_one_attached :image do |attachable|
+    attachable.variant :share, resize_to_limit: [1920, 1080]
+  end
 
   validates :slug, uniqueness: { case_sensitive: false }, presence: true
 

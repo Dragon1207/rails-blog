@@ -3,6 +3,11 @@ class Post < ApplicationRecord
   has_many :tags, through: :post_tags
   has_rich_text :content
 
+  has_one_attached :social_image do |attachable|
+    attachable.variant :twitter, resize_to_limit: [2000, 2000]
+    attachable.variant :facebook, resize_to_limit: [1200, 630]
+  end
+
   validates :slug, uniqueness: { case_sensitive: false }, presence: true
 
   before_validation :generate_slug, on: :create

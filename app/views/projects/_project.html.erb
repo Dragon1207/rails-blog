@@ -1,21 +1,16 @@
-<div id="<%= dom_id project %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
-    <%= project.name %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Description:</strong>
-    <%= project.description %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Url:</strong>
-    <%= project.url %>
-  </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this project", project, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
+<div class="md p-4 md:w-1/2" style="max-width: 544px" id="<%= dom_id project %>">
+  <div class="h-full overflow-hidden rounded-md border-2 border-gray-200 border-opacity-60 dark:border-gray-700">
+    <%= link_to project.url do %>
+      <img class="object-cover object-center md:h-36 lg:h-48" src="<%= url_for(project.image.variant(:share)) %>" alt="<%= project.name %>">
+    <% end %>
+    <div class="p-6">
+      <h2 class="mb-3 text-2xl font-bold leading-8 tracking-tight">
+        <%= link_to project.name, project.url %>
+      </h2>
+      <p class="prose mb-3 max-w-none text-gray-500 dark:text-gray-400">
+        <%= project.description %>
+      </p>
+      <%= link_to "Learn More ↠", project.url %>
+    </div>
+  </div>
 </div>

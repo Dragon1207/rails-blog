@@ -29,7 +29,7 @@ ActiveAdmin.register Project do
       f.input :slug
       f.input :description
       f.input :url
-      f.input :image, as: :file, hint: f.object.image.present? ? image_tag(f.object.image.variant(resize: '200x200')) : content_tag(:span, 'No image yet')
+      f.input :image, as: :file, hint: f.object.image.present? ? image_tag(f.object.image.variant(resize_to_limit: [200, 200])) : content_tag(:span, 'No image yet')
     end
     f.actions
   end
@@ -41,7 +41,7 @@ ActiveAdmin.register Project do
       row :description
       row :url
       row :image do
-        image_tag(project.image.variant(resize: '200x200'))
+        image_tag(project.image.variant(resize_to_limit: [200, 200]))
       end
     end
   end
