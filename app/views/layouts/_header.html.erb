@@ -38,7 +38,7 @@
       class="ml-1 mr-1 h-8 w-8 rounded p-1 sm:ml-4"
       data-action="click->dark-mode#toggle"
     >
-      <i class="fa-solid fa-moon" data-dark-mode-target="icon"></i>
+      <i class="fa-solid <%= @dark_mode ? 'fa-sun-bright' : 'fa-moon' %>" data-dark-mode-target="icon"></i>
     </button>
     <%= render "layouts/mobile_nav" %>
     <%# <ThemeSwitch />

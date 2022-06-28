@@ -1,16 +1,17 @@
 import { Controller } from "@hotwired/stimulus"
+import Cookies from "js-cookie"
 
 export default class extends Controller {
   static targets = [ "html", "icon" ]
 
   connect() {
-    this.darkMode = localStorage.getItem("darkMode") === "true" || false;
+    this.darkMode = Cookies.get("dark_mode") === "true" || false;
     if (this.darkMode) {
       this.enableDarkMode();
     }
-    if (localStorage.getItem("darkMode") === null && (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    if (Cookies.get("dark_mode") === undefined && (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       this.enableDarkMode();
-      localStorage.setItem("darkMode", true);
+      Cookies.set("dark_mode", true);
       this.darkMode = true;
     }
   }
@@ -33,11 +34,11 @@ export default class extends Controller {
     if (this.darkMode) {
       this.darkMode = false;
       this.disableDarkMode();
-      localStorage.setItem("darkMode", false);
+      Cookies.set("dark_mode", false);
     } else {
       this.darkMode = true;
       this.enableDarkMode();
-      localStorage.setItem("darkMode", true);
+      Cookies.set("dark_mode", true);
     }
   }
 }
