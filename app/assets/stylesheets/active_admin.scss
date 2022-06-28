@@ -38,3 +38,17 @@
     max-width: 20px;
   }
 }
+
+.header #tabs {
+  z-index: 5;
+}
+
+.trix-content ul, .trix-content ul li {
+  list-style: disc !important;
+  list-style-type: disc !important;
+}
+
+.trix-content ol, .trix-content ol li {
+  list-style: decimal !important;
+  list-style-type: decimal !important;
+}
