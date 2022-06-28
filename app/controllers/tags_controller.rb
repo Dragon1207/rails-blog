@@ -4,11 +4,14 @@ class TagsController < ApplicationController
 
   # GET /tags or /tags.json
   def index
-    @tags = Tag.includes(:posts).all
+    @tags = Tag.includes(:published_posts).all
   end
 
   # GET /tags/1 or /tags/1.json
-  def show; end
+  def show
+    @posts = @tag.published_posts
+    @posts = @tag.posts if current_admin_user
+  end
 
   private
 

@@ -1,31 +1,28 @@
-<div id="<%= dom_id post %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Published:</strong>
-    <%= post.published %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
-    <%= post.name %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Description:</strong>
-    <%= post.description %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Keywords:</strong>
-    <%= post.keywords %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Published date:</strong>
-    <%= post.published_date %>
-  </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this post", post, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
-</div>
+<li id="<%= dom_id post %>" class="py-4">
+  <article class="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
+    <dl>
+      <dt class="sr-only">Published on</dt>
+      <dd class="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+        <time dateTime="<%= post.published_date %>"><%= post.published_date.strftime("%B %-d, %Y") %></time>
+      </dd>
+    </dl>
+    <div class="space-y-3 xl:col-span-3">
+      <div>
+        <h3 class="text-2xl font-bold leading-8 tracking-tight">
+          <%= link_to post.name, post, class: 'text-gray-900 dark:text-gray-100' %>
+          <% if !post.published? %>
+            <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">Preview</span>
+          <% end %>
+        </h3>
+        <div class="flex flex-wrap">
+          <% post.tags.each do |tag| %>
+            <%= render tag %>
+          <% end %>
+        </div>
+      </div>
+      <div class="prose max-w-none text-gray-500 dark:text-gray-400">
+        <%= post.description %>
+      </div>
+    </div>
+  </article>
+</li>

@@ -12,6 +12,9 @@ gem "activeadmin"
 # Styles for active admin
 gem "arctic_admin"
 
+# Searchable select for active admin
+gem "activeadmin-searchable_select"
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
@@ -35,6 +38,9 @@ gem "tailwindcss-rails", "~> 2.0"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
+
+# We want to paginate the blog posts
+gem "kaminari"
 
 # Use Redis adapter to run Action Cable in production
 gem "redis", "~> 4.0"

@@ -7,6 +7,8 @@ ActiveAdmin.register Tag do
   #
   permit_params :name, :slug
 
+  searchable_select_options(scope: -> { Tag.all }, text_attribute: :name)
+
   controller do
     def find_resource
       scoped_collection.where(slug: params[:id]).first!

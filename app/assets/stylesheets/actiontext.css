@@ -30,6 +30,10 @@
   max-width: 100% !important;
 }
 
+.trix-content img {
+  display: inline;
+}
+
 trix-editor {
   min-height: 20em;
 }

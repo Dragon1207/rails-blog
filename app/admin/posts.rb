@@ -4,7 +4,7 @@ ActiveAdmin.register Post do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :published, :name, :slug, :description, :keywords, :published_date, :content
+  permit_params :published, :name, :slug, :description, :keywords, :published_date, :content, tag_ids: []
 
   controller do
     helper ActionText::Engine.helpers
@@ -30,6 +30,7 @@ ActiveAdmin.register Post do
       row :name
       row :slug
       row :description
+      row :tags
       row :keywords
       row :published_date
       row :published
@@ -57,6 +58,7 @@ ActiveAdmin.register Post do
       input :slug
       input :published_date, as: :datepicker
       input :description, input_html: { rows: '3' }
+      f.input :tags, as: :searchable_select, ajax: { resource: Tag }
       input :keywords
     end
 
