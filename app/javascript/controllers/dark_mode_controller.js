@@ -8,6 +8,11 @@ export default class extends Controller {
     if (this.darkMode) {
       this.enableDarkMode();
     }
+    if (localStorage.getItem("darkMode") === null && (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      this.enableDarkMode();
+      localStorage.setItem("darkMode", true);
+      this.darkMode = true;
+    }
   }
 
   disableDarkMode() {
