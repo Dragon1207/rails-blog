@@ -1,5 +1,6 @@
 # Renders blog posts
 class PostsController < ApplicationController
+  include ActiveStorage::SetCurrent
   before_action :set_post, only: [:show]
 
   # GET /posts or /posts.json
@@ -16,7 +17,7 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.includes(:tags).where(published: true).find_by(slug: params[:slug].downcase)
-    @post = Post.find_by!(slug: params[:slug].downcase) if current_admin_user
+    @post = Post.includes(:tags).find_by!(slug: params[:slug].downcase) if current_admin_user
     return if @post
 
     raise ActiveRecord::RecordNotFound, "Couldn't find Post with url #{params[:slug]}"

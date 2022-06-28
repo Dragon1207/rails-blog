@@ -7,8 +7,8 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@nickhorob" />
     <% if @post.social_image.present? %>
-      <meta property="og:image" content="<%= url_for(@post.social_image.variant(:facebook)) %>" />
-      <meta name="twitter:image" content="<%= url_for(@post.social_image.variant(:twitter)) %>" />
+      <meta property="og:image" content="<%= @post.social_image.variant(:facebook).processed.url %>" />
+      <meta name="twitter:image" content="<%= @post.social_image.variant(:twitter).processed.url %>" />
     <% end %>
   <% end %>
   <div class="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
