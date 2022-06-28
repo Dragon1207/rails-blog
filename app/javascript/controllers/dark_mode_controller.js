@@ -19,14 +19,14 @@ export default class extends Controller {
     this.htmlTarget.classList.remove("dark");
     this.htmlTarget.style.setProperty("color-scheme", "light");
     this.iconTarget.classList.replace("fa-sun-bright", "fa-moon");
-    document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]').setAttribute("content", "white");
+    document.querySelector('meta[name="theme-color"]').setAttribute("content", "#fff");
   }
 
   enableDarkMode() {
     this.htmlTarget.classList.add("dark");
     this.htmlTarget.style.setProperty("color-scheme", "dark");
     this.iconTarget.classList.replace("fa-moon", "fa-sun-bright");
-    document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]').setAttribute("content", "black-translucent");
+    document.querySelector('meta[name="theme-color"]').setAttribute("content", "#000");
   }
 
   toggle() {
