@@ -5,8 +5,8 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.includes(:tags).where(published: true).order(published_date: :desc).page(params[:page])
-    @posts = Post.includes(:tags).all.order(published_date: :desc).page(params[:page]) if current_admin_user
+    set_posts
+    set_posts_if_admin if current_admin_user
   end
 
   # GET /posts/1 or /posts/1.json
@@ -21,5 +21,15 @@ class PostsController < ApplicationController
     return if @post
 
     raise ActiveRecord::RecordNotFound, "Couldn't find Post with url #{params[:slug]}"
+  end
+
+  def set_posts
+    @posts = Post.includes(:tags).where(published: true).order(published_date: :desc).page(params[:page])
+    @posts = Post.includes(:tags).where(published: true).search(params[:q]).page(params[:page]) if params[:q].present?
+  end
+
+  def set_posts_if_admin
+    @posts = Post.includes(:tags).all.order(published_date: :desc).page(params[:page])
+    @posts = Post.includes(:tags).search(params[:q]).page(params[:page]) if params[:q].present?
   end
 end

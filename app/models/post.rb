@@ -1,7 +1,19 @@
 class Post < ApplicationRecord
+  include PgSearch::Model
+
   has_many :post_tags, dependent: :destroy
   has_many :tags, through: :post_tags
   has_rich_text :content
+
+  pg_search_scope :search,
+                  against: [:name, :description],
+                  associated_against: {
+                    rich_text_content: :body,
+                    tags: :name
+                  },
+                  using: {
+                    tsearch: { prefix: true }
+                  }
 
   has_one_attached :social_image do |attachable|
     attachable.variant :twitter, resize_to_limit: [2000, 2000]

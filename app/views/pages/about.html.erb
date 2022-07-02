@@ -47,6 +47,9 @@
       </div>
     </div>
     <div class="prose max-w-none pt-8 pb-8 dark:prose-dark xl:col-span-2">
+      <% if @user %>
+        <%= @user.about_page_content %>
+      <% else %>
       <p>
         Chuck Norris can lead a horse to water AND make it drink If you ask Chuck Norris what time it is, he always says, "Two seconds 'til." After you ask, "Two seconds 'til what?" he roundhouse kicks you in the face Guns don't kill people. Chuck Norris kills people, Chuck Norris will attain statehood in 2009. His state flower will be the Magnolia When the Boogeyman goes to sleep every night, he checks his closet for Chuck Norris If it smells like chicken, tastes like chicken, looks like chicken, if Chuck says it's steak, then it's steak. The quickest way to a man's heart is with Chuck Norris' fist. Fool me once, shame on you. Fool Chuck Norris once and he will roundhouse you in the face Chuck Norris uses pepper spray to spice up his steaks, There is no theory of evolution. Just a list of creatures Chuck Norris has allowed to live.
       </p>
@@ -56,6 +59,7 @@
       <p>
         There is no limbo, only a world that doesn't know of Chuck Norris, Police label anyone attacking Chuck Norris as a Code 45-11... a suicide, Chuck Norris doesn't break hearts, he shatters them There is no chin behind Chuck Norris' beard. There is only another fist, Chuck Norris is my Homeboy. Chuck Norris can beat Mortal Kombat on the highest difficulty using Dan Hibiki There is no chin behind Chuck Norris' beard. There is only another fist Chuck Norris found the 51st shade of gray Chuck Norris invented Kentucky Fried Chicken's famous secret recipe, with eleven herbs and spices. But nobody ever mentions the twelfth ingredient: Fear.
       </p>
+      <% end %>
     </div>
   </div>
 </div>

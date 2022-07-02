@@ -1,5 +1,5 @@
 ActiveAdmin.register AdminUser do
-  permit_params :email, :password, :password_confirmation
+  permit_params :email, :about_page, :about_page_content
 
   index do
     selectable_column
@@ -19,8 +19,14 @@ ActiveAdmin.register AdminUser do
   form do |f|
     f.inputs do
       f.input :email
-      f.input :password
-      f.input :password_confirmation
+    end
+    f.inputs do
+      f.input :about_page,
+              as: :boolean,
+              label: 'Use this user for the about page'
+    end
+    f.inputs do
+      f.rich_text_area :about_page_content
     end
     f.actions
   end
