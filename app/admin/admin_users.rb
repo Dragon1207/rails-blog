@@ -22,13 +22,14 @@ ActiveAdmin.register AdminUser do
     end
     f.inputs do
       f.input :about_page,
-              as: :boolean,
-              label: 'Use this user for the about page'
+              as: :select,
+              label: 'Use this user for the about page',
+              prompt: false,
+              include_blank: false
     end
     f.inputs do
       f.rich_text_area :about_page_content
     end
     f.actions
   end
-
 end

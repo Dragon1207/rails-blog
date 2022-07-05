@@ -1,5 +1,7 @@
 <article>
   <% content_for :head do %>
+    <meta name="description" content="<%= @post.description %>">
+    <link rel="canonical" href="<%= post_url(@post) %>" />
     <meta property="og:url" content="<%= post_url(@post) %>" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="<%= @post.name %>" />
@@ -10,6 +12,28 @@
       <meta property="og:image" content="<%= @post.social_image.variant(:facebook).processed.url %>" />
       <meta name="twitter:image" content="<%= @post.social_image.variant(:twitter).processed.url %>" />
     <% end %>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://google.com/article"
+      },
+      "headline": "<%= @post.name %>",
+      <% if @post.social_image.present? %>
+      "image": [
+        "<%= @post.social_image.variant(:facebook).processed.url %>"
+      ],
+      <% end %>
+      "datePublished": "<%= @post.published_date.iso8601 %>",
+      "author": {
+        "@type": "Person",
+        "name": "Nick Horob",
+        "url": "https://nickhorob.com/about"
+      }
+    }
+    </script>
   <% end %>
   <div class="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
     <header class="pt-6 xl:pb-6">

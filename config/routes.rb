@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
+  # We need a sitemap for SEO purposes
+  get 'sitemap.xml', to: 'pages#sitemap', format: 'xml', as: :sitemap
+
   # Defines the root path route ("/")
   root 'pages#home'
 end

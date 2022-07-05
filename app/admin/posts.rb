@@ -56,7 +56,7 @@ ActiveAdmin.register Post do
 
   form do |f|
     f.inputs do
-      input :published, as: :boolean
+      input :published, as: :select, include_blank: false
       input :name
       input :slug
       input :published_date, as: :datepicker
