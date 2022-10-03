@@ -87,5 +87,3 @@ production:
   password: 60267b919dfa9573e3685280dd452324a4407997f853f8c7869b6d6c998e1ed6
   host: ec2-52-202-236-238.compute-1.amazonaws.com
   url: postgres://fzbaroeorssscd:60267b919dfa9573e3685280dd452324a4407997f853f8c7869b6d6c998e1ed6@ec2-52-202-236-238.compute-1.amazonaws.com:5432/d3gofrqqhcalh6
-
-
