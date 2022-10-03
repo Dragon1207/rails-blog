@@ -82,9 +82,10 @@ test:
 #
 production:
   <<: *default
-  database: deu3eu7eb0sq1g
-  username: wxatbycpdoyhpp
-  password: 0c332358ab16fcc336d06a44a0de761aa22a256f94366f696490262e4d2031ad
+  database: d3gofrqqhcalh6
+  username: fzbaroeorssscd
+  password: 60267b919dfa9573e3685280dd452324a4407997f853f8c7869b6d6c998e1ed6
   host: ec2-52-202-236-238.compute-1.amazonaws.com
-  url: postgres://wxatbycpdoyhpp:0c332358ab16fcc336d06a44a0de761aa22a256f94366f696490262e4d2031ad@ec2-52-202-236-238.compute-1.amazonaws.com:5432/deu3eu7eb0sq1g
+  url: postgres://fzbaroeorssscd:60267b919dfa9573e3685280dd452324a4407997f853f8c7869b6d6c998e1ed6@ec2-52-202-236-238.compute-1.amazonaws.com:5432/d3gofrqqhcalh6
+
 
