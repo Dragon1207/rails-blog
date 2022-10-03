@@ -16,20 +16,20 @@ class PostsController < ApplicationController
   private
 
   def set_post
-    @post = Post.includes(:tags).where(published: true).find_by(slug: params[:slug].downcase)
-    @post = Post.includes(:tags).find_by!(slug: params[:slug].downcase) if current_admin_user
+    @post = Post.includes(:categories).where(published: true).find_by(slug: params[:slug].downcase)
+    @post = Post.includes(:categories).find_by!(slug: params[:slug].downcase) if current_admin_user
     return if @post
 
     raise ActiveRecord::RecordNotFound, "Couldn't find Post with url #{params[:slug]}"
   end
 
   def set_posts
-    @posts = Post.includes(:tags).where(published: true).order(published_date: :desc).page(params[:page])
-    @posts = Post.includes(:tags).where(published: true).search(params[:q]).page(params[:page]) if params[:q].present?
+    @posts = Post.includes(:categories).where(published: true).order(published_date: :desc).page(params[:page])
+    @posts = Post.includes(:categories).where(published: true).search(params[:q]).page(params[:page]) if params[:q].present?
   end
 
   def set_posts_if_admin
-    @posts = Post.includes(:tags).all.order(published_date: :desc).page(params[:page])
-    @posts = Post.includes(:tags).search(params[:q]).page(params[:page]) if params[:q].present?
+    @posts = Post.includes(:categories).all.order(published_date: :desc).page(params[:page])
+    @posts = Post.includes(:categories).search(params[:q]).page(params[:page]) if params[:q].present?
   end
 end

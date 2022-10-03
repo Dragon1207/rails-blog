@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+    @-webkit-keyframes blink {
+      50% {
+        border-color: tranparent;
+      }
+    }
+    @keyframes caret {
+      50% {
+        border-color: transparent;
+      }
+    }
+}@import 'actiontext.css';

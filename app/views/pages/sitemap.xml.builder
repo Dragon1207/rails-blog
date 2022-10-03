@@ -1,5 +1,5 @@
 xml.instruct! :xml, version: '1.0'
-xml.tag! 'urlset', 'xmlns' => 'http://www.sitemaps.org/schemas/sitemap/0.9', 'xmlns:image' => 'http://www.google.com/schemas/sitemap-image/1.1', 'xmlns:video' => 'http://www.google.com/schemas/sitemap-video/1.1' do
+xml.category! 'urlset', 'xmlns' => 'http://www.sitemaps.org/schemas/sitemap/0.9', 'xmlns:image' => 'http://www.google.com/schemas/sitemap-image/1.1', 'xmlns:video' => 'http://www.google.com/schemas/sitemap-video/1.1' do
   xml.url do
     xml.loc root_url
   end
@@ -22,12 +22,12 @@ xml.tag! 'urlset', 'xmlns' => 'http://www.sitemaps.org/schemas/sitemap/0.9', 'xm
   end
 
   xml.url do
-    xml.loc tags_url
+    xml.loc categories_url
   end
 
-  @tags.each do |tag|
+  @categories.each do |category|
     xml.url do
-      xml.loc tag_url(tag.slug)
+      xml.loc category_url(category.slug)
     end
   end
 end

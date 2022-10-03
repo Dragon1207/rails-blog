@@ -13,9 +13,9 @@
 @import "active_admin/searchable_select";
 
 // Overriding any non-variable Sass must be done after the fact.
-// For example, to change the default status-tag color:
+// For example, to change the default status-category color:
 //
-//   .status_tag { background: #6090DB; }
+//   .status_category { background: #6090DB; }
 
 @media screen and (max-width: 992px) {
   #site_title {

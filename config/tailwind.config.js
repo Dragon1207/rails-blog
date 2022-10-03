@@ -13,6 +13,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['InterVariable', ...defaultTheme.fontFamily.sans],
+        'berlinSans': ['Berlin Sans FB Demi'],
       },
       spacing: {
         '9/16': '56.25%',

@@ -1,8 +1,8 @@
-class Tag < ApplicationRecord
-  has_many :post_tags, dependent: :destroy
-  has_many :posts, through: :post_tags
+class Category < ApplicationRecord
+  has_many :post_categories, dependent: :destroy
+  has_many :posts, through: :post_categories
 
-  has_many :published_posts, -> { where(published: true) }, through: :post_tags, source: :post
+  has_many :published_posts, -> { where(published: true) }, through: :post_categories, source: :post
 
   validates :slug, uniqueness: { case_sensitive: false }, presence: true
 

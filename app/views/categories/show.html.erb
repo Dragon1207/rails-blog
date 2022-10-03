@@ -1,9 +1,9 @@
 <div class="divide-y divide-gray-200 dark:divide-gray-700">
   <div class="space-y-2 pt-6 pb-8 md:space-y-5">
     <h1 class="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-      <%= @tag.name %>
+      <%= @category.name %>
     </h1>
-    <form class="relative max-w-lg" action="<%= tag_path(@tag) %>" method="GET">
+    <form class="relative max-w-lg" action="<%= category_path(@category) %>" method="GET">
       <input
         aria-label="Search articles"
         type="text"

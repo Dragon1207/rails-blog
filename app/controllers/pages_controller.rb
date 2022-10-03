@@ -4,12 +4,13 @@ class PagesController < ApplicationController
   end
 
   def home
-    @posts = Post.includes(:tags).where(published: true).order(published_date: :desc).page(params[:page])
-    @posts = Post.includes(:tags).page(params[:page]) if current_admin_user
+    @posts = Post.includes(:categories).where(published: true).order(published_date: :desc).page(params[:page])
+    @posts = Post.includes(:categories).page(params[:page]) if current_admin_user
+    @categories = Category.all.order("id")
   end
 
   def sitemap
-    @tags = Tag.all
+    @categories = Category.all
     @posts = Post.where(published: true).order(published_date: :desc)
   end
 end
