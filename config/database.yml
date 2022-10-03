@@ -73,15 +73,18 @@ test:
 # the values provided in this file. Alternatively, you can specify a connection
 # URL environment variable explicitly:
 #
-production:
-  <<: *default
-  url: <%= ENV["DATABASE_URL"] %>
+# production:
+#   <<: *default
+#   url: <%= ENV["DATABASE_URL"] %>
 #
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
-# production:
-#   <<: *default
-#   database: nicks_blog_production
-#   username: nicks_blog
-#   password: <%= ENV["NICKS_BLOG_DATABASE_PASSWORD"] %>
+production:
+  <<: *default
+  database: deu3eu7eb0sq1g
+  username: wxatbycpdoyhpp
+  password: 0c332358ab16fcc336d06a44a0de761aa22a256f94366f696490262e4d2031ad
+  host: ec2-52-202-236-238.compute-1.amazonaws.com
+  url: postgres://wxatbycpdoyhpp:0c332358ab16fcc336d06a44a0de761aa22a256f94366f696490262e4d2031ad@ec2-52-202-236-238.compute-1.amazonaws.com:5432/deu3eu7eb0sq1g
+
