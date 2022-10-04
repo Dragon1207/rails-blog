@@ -1,2 +1,2 @@
-web: sh -c "bin/rails db:seed && bin/rails db:migrate && bin/rails server"
+web: sh -c "bin/rails db:setup && bin/rails server"
 css: bin/rails tailwindcss:watch

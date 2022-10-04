@@ -4,7 +4,7 @@ class Category < ApplicationRecord
 
   has_many :published_posts, -> { where(published: true) }, through: :post_categories, source: :post
 
-  validates :slug, uniqueness: { case_sensitive: false }, presence: true
+  validates :slug, :name, uniqueness: { case_sensitive: false }, presence: true
 
   before_validation :generate_slug, on: :create
 
