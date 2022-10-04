@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
   include PgSearch::Model
+  validates :name, :slug, :published_date, :categories, presence: true
 
   has_many :post_categories, dependent: :destroy
   has_many :categories, through: :post_categories
