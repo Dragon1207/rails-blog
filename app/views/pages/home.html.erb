@@ -1,8 +1,8 @@
 <div class="divide-y divide-gray-200 dark:divide-gray-700">
   <div class="mb-[50px] text-[#0F172A] dark:text-gray-100">
-    <div class='uppercase font-berlinSans text-[80px] text-[#010101] font-black leading-[75px]'>NERD OUT ON</div>
+    <div class='uppercase font-berlinSans text-[80px] text-[#010101] dark:text-white font-black leading-[75px]'>NERD OUT ON</div>
     <div class="uppercase flex text-[130px] text-[#FF0A0A] font-berlinSans leading-[125px] mt-[40px]"><div id='typewriter' class='typewrite' data-period='2000' data-type=''></div><div></div></div>
-    <div class='text-[40px] text-[#485569] font-poppins leading-[50px] mt-[40px] dark:text-gray-100'>A book and video course that teaches you how to design your own icons from scratch.</div>
+    <div id="header2" class='text-[40px] text-[#485569] font-poppins leading-[50px] mt-[40px] dark:text-gray-100'>A book and video course that teaches you how to design your own icons from scratch.</div>
   </div>
   <% if @categories.length() > 0 %>
   <div id="itemsList" style="border: 0" class="relative justify-between items-center flex font-poppins overflow-x-scroll no-scrollbar bg-white dark:bg-gray-900 w-full overflow-x-scroll flex justify-between space-x-4 whitespace-nowrap py-6 px-4 text-center">
@@ -96,6 +96,12 @@
     if (toRotate) {
       new TxtType(typewriter, JSON.parse(toRotate), period);
     }
+  });
+
+  fetch('/header2')
+  .then((response) => response.json())
+  .then((data) => {
+    document.getElementById("header2").innerHTML = data.description
   });
   // INJECT CSS
   var css = document.createElement("style");

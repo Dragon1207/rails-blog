@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   # We need a sitemap for SEO purposes
   get 'sitemap.xml', to: 'pages#sitemap', format: 'xml', as: :sitemap
   get 'typewords', to: 'typeword#show'
+  get 'header2', to: 'header2#show'
 
   # Defines the root path route ("/")
   root 'pages#home'
