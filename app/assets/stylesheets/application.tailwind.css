@@ -3,14 +3,23 @@
 @tailwind utilities;
 
 @layer utilities {
-    @-webkit-keyframes blink {
-      50% {
-        border-color: tranparent;
-      }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-x-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  
+  @-webkit-keyframes blink {
+    50% {
+      border-color: tranparent;
     }
-    @keyframes caret {
-      50% {
-        border-color: transparent;
-      }
+  }
+  @keyframes caret {
+    50% {
+      border-color: transparent;
     }
+  }
 }@import 'actiontext.css';
