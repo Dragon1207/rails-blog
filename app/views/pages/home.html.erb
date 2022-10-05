@@ -1,15 +1,25 @@
 <div class="divide-y divide-gray-200 dark:divide-gray-700">
-  <div class="mb-[50px] text-[110px] text-[#0F172A] dark:text-gray-100">
-    <div class='font-berlinSans font-black leading-[100px]'>Get lost in the world</div>
-    <div class="flex font-berlinSans leading-[75px] mt-[40px]"><div id='typewriter' class='typewrite' data-period='2000' data-type=''></div><div>.</div></div>
+  <div class="mb-[50px] text-[#0F172A] dark:text-gray-100">
+    <div class='uppercase font-berlinSans text-[80px] text-[#010101] font-black leading-[75px]'>NERD OUT ON</div>
+    <div class="uppercase flex text-[130px] text-[#FF0A0A] font-berlinSans leading-[75px] mt-[40px]"><div id='typewriter' class='typewrite' data-period='2000' data-type=''></div><div></div></div>
     <div class='text-[40px] text-[#485569] font-poppins leading-[50px] mt-[40px] dark:text-gray-100'>A book and video course that teaches you how to design your own icons from scratch.</div>
   </div>
   <% if @categories.length() > 0 %>
-  <div class="relative justify-between items-center flex font-poppins overflow-x-scroll no-scrollbar mt-[30px] bg-white dark:bg-gray-900 w-full overflow-x-scroll flex justify-between space-x-4 whitespace-nowrap py-3 px-4 text-center">
+  <div id="itemsList" class="relative justify-between items-center flex font-poppins overflow-x-scroll no-scrollbar mt-[30px] bg-white dark:bg-gray-900 w-full overflow-x-scroll flex justify-between space-x-4 whitespace-nowrap py-3 px-4 text-center">
+    <button id='topBtn' onclick='topFunction()' class='hidden sticky left-0 rounded-full ml-auto w-[40px] h-[40px] p-[6px] bg-white shadow-[0_12px_15px_0px_rgba(0,0,0,0.08)] active:border-[#1C7FFC] border-2'>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+      </svg>
+    </button>
     <button onclick="clickedCateBtn('all', 'all')" id="cateBtn-all", class="bg-[#FF0A0A] px-8 text-[14px] hover:focus:outline-none hover:focus:ring-4 hover:focus:ring-red-300 hover:text-sm h-[50px] rounded-full hover:rounded-full hover:bg-[#FF1A1A] hover:text-center flex justify-center items-center hover:shadow-[0_15px_25px_0px_rgba(203,0,0,0.2)]">All</button>
     <% @categories.each do |category| %>
         <button onclick="clickedCateBtn('<%= category.name %>', '<%= category.slug %>')" id="cateBtn-<%= category.name %>", class="px-8 text-[14px] hover:focus:outline-none hover:focus:ring-4 hover:focus:ring-red-300 hover:text-sm h-[50px] rounded-full hover:rounded-full hover:bg-[#FF1A1A] hover:text-center flex justify-center items-center hover:shadow-[0_15px_25px_0px_rgba(203,0,0,0.2)]"><%= category.name %></button>
     <% end %>
+    <button id='bottomBtn' onclick='bottomFunction()' class='sticky right-0 rounded-full ml-auto w-[40px] h-[40px] p-[6px] bg-white shadow-[0_12px_15px_0px_rgba(0,0,0,0.08)] active:border-[#1C7FFC] border-2'>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+      </svg>
+    </button>
   </div>
   <% end %>
   <ul id="posts">
@@ -138,5 +148,22 @@
       }
       postPart.innerHTML = text
     });
+  }
+
+  function bottomFunction() {
+    document.getElementById('itemsList').scrollLeft+=document.getElementById('itemsList').offsetWidth;
+    console.log(document.getElementById('itemsList').scrollLeft, "---", document.getElementById('itemsList').scrollWidth-document.getElementById('itemsList').offsetWidth);
+    if (document.getElementById('itemsList').scrollLeft >= document.getElementById('itemsList').scrollWidth - document.getElementById('itemsList').offsetWidth - 5){
+      document.getElementById('bottomBtn').classList.add("hidden");
+    }
+    document.getElementById('topBtn').classList.remove("hidden");
+  }
+  function topFunction() {
+    document.getElementById('itemsList').scrollLeft-=document.getElementById('itemsList').offsetWidth;
+    console.log(document.getElementById('itemsList').scrollLeft, "---", document.getElementById('itemsList').scrollWidth);
+    if (document.getElementById('itemsList').scrollLeft < 5){
+      document.getElementById('topBtn').classList.add("hidden");
+    }
+    document.getElementById('bottomBtn').classList.remove("hidden");
   }
 </script>
