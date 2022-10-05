@@ -16,8 +16,8 @@ class PostsController < ApplicationController
   private
 
   def set_post
-    @post = Post.includes(:categories).where(published: true).find_by(slug: params[:slug].downcase)
-    @post = Post.includes(:categories).find_by!(slug: params[:slug].downcase) if current_admin_user
+    @post = Post.includes(:categories).where(published: true).find_by(slug: params[:slug])
+    @post = Post.includes(:categories).find_by!(slug: params[:slug]) if current_admin_user
     return if @post
 
     raise ActiveRecord::RecordNotFound, "Couldn't find Post with url #{params[:slug]}"

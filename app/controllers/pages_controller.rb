@@ -17,7 +17,7 @@ class PagesController < ApplicationController
       @posts = Post.includes(:categories).where(published: true).order(published_date: :desc).page(params[:page])
       @posts = Post.includes(:categories).page(params[:page]) if current_admin_user
     else
-      @category = Category.find_by!(slug: params[:slug].downcase)
+      @category = Category.find_by!(slug: params[:slug])
       @current_category = Category.find_by(slug: params[:slug]).name
       set_posts_for_category
       set_posts_for_category_while_admin if current_admin_user

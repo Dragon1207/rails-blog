@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
   private
 
   def set_category
-    @category = Category.find_by!(slug: params[:slug].downcase)
+    @category = Category.find_by!(slug: params[:slug])
   end
 
   def set_posts_for_category
