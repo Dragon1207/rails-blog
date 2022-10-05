@@ -8,7 +8,7 @@
   <div class="relative justify-between items-center flex font-poppins overflow-x-scroll no-scrollbar mt-[30px] bg-white dark:bg-gray-900 w-full overflow-x-scroll flex justify-between space-x-4 whitespace-nowrap py-3 px-4 text-center">
     <button onclick="clickedCateBtn('all', 'all')" id="cateBtn-all", class="bg-[#FF0A0A] px-8 text-[14px] hover:focus:outline-none hover:focus:ring-4 hover:focus:ring-red-300 hover:text-sm h-[50px] rounded-full hover:rounded-full hover:bg-[#FF1A1A] hover:text-center flex justify-center items-center hover:shadow-[0_15px_25px_0px_rgba(203,0,0,0.2)]">All</button>
     <% @categories.each do |category| %>
-        <button onclick="clickedCateBtn(<%= category.name %>, <%= category.slug %>)" id="cateBtn-<%= category.name %>", class="px-8 text-[14px] hover:focus:outline-none hover:focus:ring-4 hover:focus:ring-red-300 hover:text-sm h-[50px] rounded-full hover:rounded-full hover:bg-[#FF1A1A] hover:text-center flex justify-center items-center hover:shadow-[0_15px_25px_0px_rgba(203,0,0,0.2)]"><%= category.name %></button>
+        <button onclick="clickedCateBtn('<%= category.name %>', '<%= category.slug %>')" id="cateBtn-<%= category.name %>", class="px-8 text-[14px] hover:focus:outline-none hover:focus:ring-4 hover:focus:ring-red-300 hover:text-sm h-[50px] rounded-full hover:rounded-full hover:bg-[#FF1A1A] hover:text-center flex justify-center items-center hover:shadow-[0_15px_25px_0px_rgba(203,0,0,0.2)]"><%= category.name %></button>
     <% end %>
   </div>
   <% end %>
@@ -98,13 +98,9 @@
   var text = ""
 
   function clickedCateBtn(cateName, cateSlug) {
-    console.log(cateName);
     fetch('/'+cateSlug)
     .then((response) => response.json())
-    .then((data) => {
-      console.log(data)
-      console.log(data.current_category)
-      
+    .then((data) => {      
       document.getElementById("numOfPosts").innerHTML = ` Displaying <b>all ${data.posts.length}</b> posts `
 
       curId = "cateBtn-" + data.current_category
@@ -116,7 +112,6 @@
       text = ""
       data.posts.forEach(buildPost);
       function buildPost(item, index) {
-        console.log(item, index)
         text += `<li id="post_${index+1}" class="py-4">
           <article class="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
             <div class="space-y-3 xl:col-span-3">
@@ -140,7 +135,6 @@
             </div>
           </article>
         </li>`
-        console.log(item, index)
       }
       postPart.innerHTML = text
     });
