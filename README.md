@@ -49,6 +49,8 @@ After that, go to the project root directory on your local and run command line 
 
 ```bash
 heroku login
+heroku buildpacks:add --index 1 heroku-community/apt
+heroku buildpacks:add --index 4 https://github.com/brandoncc/heroku-buildpack-vips
 heroku git:remote -a nerd-out
 git push heroku main
 ```
