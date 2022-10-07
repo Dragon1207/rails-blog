@@ -1,5 +1,28 @@
 <div class="divide-y divide-gray-200 dark:divide-gray-700">
-  <ul id="posts">
+  <div class="mb-[50px] text-[#0F172A] dark:text-gray-100">
+    <div class='uppercase font-berlinSans text-[80px] text-[#010101] dark:text-white font-black leading-[75px]'>NERD OUT ON</div>
+    <div class="uppercase flex text-[130px] text-[#FF0A0A] font-berlinSans leading-[125px] mt-[40px]"><div id='typewriter' class='typewrite' data-period='2000' data-type=''></div><div></div></div>
+    <div id="header2" class='text-[40px] text-[#485569] font-poppins leading-[50px] mt-[40px] dark:text-gray-100'></div>
+  </div>
+  <% if @categories.length() > 0 %>
+  <div id="itemsList" style="border: 0" class="relative justify-between items-center flex font-poppins overflow-x-scroll no-scrollbar bg-white dark:bg-gray-900 w-full overflow-x-scroll flex justify-between space-x-4 whitespace-nowrap py-6 px-4 text-center">
+    <button id='topBtn' onclick='topFunction()' class='hidden sticky -left-[16px] rounded-full ml-auto w-[40px] h-[40px] p-[6px] bg-white shadow-[0_12px_15px_0px_rgba(0,0,0,0.08)] active:border-[#1C7FFC] border-2'>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 dark:text-black">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+      </svg>
+    </button>
+    <button onclick="clickedCateBtn('all', 'all')" id="cateBtn-all", class="bg-[#FF0A0A] px-8 text-[14px] hover:focus:outline-none hover:focus:ring-4 hover:focus:ring-red-300 hover:text-sm h-[50px] rounded-full hover:rounded-full hover:bg-[#FF1A1A] hover:text-center flex justify-center items-center shadow-[0_15px_25px_0px_rgba(203,0,0,0.2)]">All</button>
+    <% @categories.each do |category| %>
+        <button onclick="clickedCateBtn('<%= category.name %>', '<%= category.slug %>')" id="cateBtn-<%= category.name %>", class="px-8 text-[14px] hover:focus:outline-none hover:focus:ring-4 hover:focus:ring-red-300 hover:text-sm h-[50px] rounded-full hover:rounded-full hover:bg-[#FF1A1A] hover:text-center flex justify-center items-center hover:shadow-[0_15px_25px_0px_rgba(203,0,0,0.2)]"><%= category.name %></button>
+    <% end %>
+    <button id='bottomBtn' onclick='bottomFunction()' class='hidden sticky -right-[16px] rounded-full mr-auto w-[40px] h-[40px] p-[6px] bg-white shadow-[0_12px_15px_0px_rgba(0,0,0,0.08)] active:border-[#1C7FFC] border-2'>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 dark:text-black">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+      </svg>
+    </button>
+  </div>
+  <% end %>
+  <ul id="posts" style="border: 0">
     <%= render @posts %>
   </ul>
   <div class="space-y-2 pt-6 pb-8 md:space-y-5">
@@ -9,7 +32,7 @@
       <% else %>
         <%= link_to_previous_page @posts, 'Previous Page' %>
       <% end %>
-      <span>
+      <span id='numOfPosts'>
         <%= page_entries_info @posts %>
       </span>
       <% if @posts.last_page? %>
@@ -20,3 +43,146 @@
     </nav>
   </div>
 </div>
+<script>
+    var TxtType = function(el, toRotate, period) {
+        this.toRotate = toRotate;
+        this.el = el;
+        this.loopNum = 0;
+        this.period = parseInt(period, 10) || 2000;
+        this.txt = '';
+        this.tick();
+        this.isDeleting = false;
+    };
+
+    TxtType.prototype.tick = function() {
+        var i = this.loopNum % this.toRotate.length;
+        var fullTxt = this.toRotate[i];
+
+        if (this.isDeleting) {
+        this.txt = fullTxt.substring(0, this.txt.length - 1);
+        } else {
+        this.txt = fullTxt.substring(0, this.txt.length + 1);
+        }
+
+        this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+
+        var that = this;
+        var delta = 200 - Math.random() * 100;
+
+        if (this.isDeleting) { delta /= 2; }
+
+        if (!this.isDeleting && this.txt === fullTxt) {
+        delta = this.period;
+        this.isDeleting = true;
+        } else if (this.isDeleting && this.txt === '') {
+        this.isDeleting = false;
+        this.loopNum++;
+        delta = 500;
+        }
+
+        setTimeout(function() {
+        that.tick();
+        }, delta);
+    };
+
+    
+  var typewriter = document.getElementById('typewriter');
+  var toRotate = typewriter.getAttribute('data-type');
+  var period = typewriter.getAttribute('data-period');
+  fetch('/typewords')
+  .then((response) => response.json())
+  .then((data) => {
+    toRotate=`["${data.join('","')}"]`
+    if (toRotate) {
+      new TxtType(typewriter, JSON.parse(toRotate), period);
+    }
+  });
+
+  fetch('/header2')
+  .then((response) => response.json())
+  .then((data) => {
+    document.getElementById("header2").innerHTML = data.description
+  });
+  // INJECT CSS
+  var css = document.createElement("style");
+  css.type = "text/css";
+  css.innerHTML = ".typewrite > .wrap { border-right: 2px solid #000000; animation: caret 0.5s steps(1) infinite;}";
+  document.body.appendChild(css);
+
+  var curId = ""
+  var pastId = "cateBtn-all"
+  var text = ""
+
+  function clickedCateBtn(cateName, cateSlug) {
+    fetch('/'+cateSlug)
+    .then((response) => response.json())
+    .then((data) => {      
+      document.getElementById("numOfPosts").innerHTML = ` Displaying <b>all ${data.posts.length}</b> posts `
+
+      curId = "cateBtn-" + data.current_category
+      document.getElementById(pastId).classList.remove("bg-[#FF0A0A]", "shadow-[0_15px_25px_0px_rgba(203,0,0,0.2)]")
+      document.getElementById(pastId).classList.add("hover:shadow-[0_15px_25px_0px_rgba(203,0,0,0.2)]")
+      document.getElementById(curId).classList.add("bg-[#FF0A0A]", "shadow-[0_15px_25px_0px_rgba(203,0,0,0.2)]")
+      document.getElementById(curId).classList.remove("hover:shadow-[0_15px_25px_0px_rgba(203,0,0,0.2)]")
+      pastId = curId
+
+      const postPart = document.getElementById("posts")
+      text = ""
+      data.posts.forEach(buildPost);
+      function buildPost(item, index) {
+        text += `<li id="post_${index+1}" class="py-4">
+          <article class="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
+            <div class="space-y-3 xl:col-span-3">
+              <div>
+                <h3 class="text-2xl font-bold leading-8 tracking-tight">
+                  <a class="text-gray-900 dark:text-gray-100" href="/posts/${item.slug}">${item.name}</a>`
+        if (item.published != true) {text += `<span class="bg-blue-100 text-blue-800 text-xs font-semibold mx-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">Preview</span>`}
+        text += `</h3>
+                <div class="flex flex-wrap">`
+        data.cates[index].forEach((item, index) => {
+        text += `<div id="category_${item.id}">
+                      <a class="mr-3 text-sm font-medium uppercase text-primary-500 hover:text-primary-600 dark:hover:text-primary-400" href="/categories/${item.slug}">${item.name}</a>
+                    </div>
+                  `
+        })
+        text += `</div>
+              </div>
+              <div class="prose max-w-none text-gray-500 dark:text-gray-400">
+                ${item.description}
+              </div>
+            </div>
+          </article>
+        </li>`
+      }
+      postPart.innerHTML = text
+    });
+  }
+
+  
+
+  console.log(document.getElementById('itemsList').clientWidth, document.getElementById('itemsList').scrollWidth)
+  if(document.getElementById('itemsList').clientWidth < document.getElementById('itemsList').scrollWidth) {
+    document.getElementById('bottomBtn').classList.remove("hidden");
+  }
+  window.addEventListener('resize', () => {
+    console.log(document.getElementById('itemsList').scrollLeft, document.getElementById('itemsList').scrollWidth)
+    if(document.getElementById('itemsList').clientWidth < document.getElementById('itemsList').scrollWidth) {
+      document.getElementById('bottomBtn').classList.remove("hidden");
+    } else {document.getElementById('bottomBtn').classList.add("hidden");}
+  });
+  
+  function bottomFunction() {
+    document.getElementById('itemsList').scrollLeft+=(document.getElementById('itemsList').offsetWidth-100);
+    if (document.getElementById('itemsList').scrollLeft >= document.getElementById('itemsList').scrollWidth - document.getElementById('itemsList').offsetWidth - 5){
+      document.getElementById('bottomBtn').classList.add("hidden");
+    }
+    document.getElementById('topBtn').classList.remove("hidden");
+  }
+  function topFunction() {
+    document.getElementById('itemsList').scrollLeft-=(document.getElementById('itemsList').offsetWidth-100);
+    if (document.getElementById('itemsList').scrollLeft < 5){
+      document.getElementById('topBtn').classList.add("hidden");
+    }
+    document.getElementById('bottomBtn').classList.remove("hidden");
+  }
+</script>

@@ -1,6 +1,6 @@
 require "test_helper"
 
-class PostCategoryTest < ActiveSupport::TestCase
+class Header2ControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

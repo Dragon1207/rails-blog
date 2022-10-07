@@ -4,7 +4,7 @@ ActiveAdmin.register Post do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :published, :name, :slug, :description, :keywords, :published_date, :content, :social_image, tag_ids: []
+  permit_params :published, :name, :slug, :description, :keywords, :published_date, :content, :social_image, category_ids: []
 
   controller do
     helper ActionText::Engine.helpers
@@ -30,7 +30,7 @@ ActiveAdmin.register Post do
       row :name
       row :slug
       row :description
-      row :tags
+      row :categories
       row :keywords
       row :published_date
       row :published
@@ -61,7 +61,7 @@ ActiveAdmin.register Post do
       input :slug
       input :published_date, as: :datepicker
       input :description, input_html: { rows: '3' }
-      f.input :tags, as: :searchable_select, ajax: { resource: Tag }
+      f.input :categories, as: :searchable_select, ajax: { resource: Category }
       input :keywords
       f.input :social_image, as: :file, hint: f.object.social_image.present? ? image_tag(f.object.social_image.variant(resize_to_limit: [200, 200])) : content_tag(:span, 'No image yet')
     end

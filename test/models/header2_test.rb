@@ -1,6 +1,6 @@
 require "test_helper"
 
-class PostCategoryTest < ActiveSupport::TestCase
+class Header2Test < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

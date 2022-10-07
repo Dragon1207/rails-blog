@@ -1,4 +1,4 @@
-ActiveAdmin.register Tag do
+ActiveAdmin.register Category do
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -7,7 +7,7 @@ ActiveAdmin.register Tag do
   #
   permit_params :name, :slug
 
-  searchable_select_options(scope: -> { Tag.all }, text_attribute: :name)
+  searchable_select_options(scope: -> { Category.all }, text_attribute: :name)
 
   controller do
     def find_resource
@@ -19,9 +19,9 @@ ActiveAdmin.register Tag do
     selectable_column
     id_column
     column :name
-    actions defaults: false do |tag|
-      item 'View', admin_tag_path(tag), class: 'member_link'
-      item 'Edit', edit_admin_tag_path(tag), class: 'member_link'
+    actions defaults: false do |category|
+      item 'View', admin_category_path(category), class: 'member_link'
+      item 'Edit', edit_admin_category_path(category), class: 'member_link'
     end
   end
 end
