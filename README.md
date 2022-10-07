@@ -36,3 +36,21 @@ bin/dev
 Or
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/jarydkrish/nicks-blog)
+
+## How to deploy on heroku
+
+First, add these environment values on your heroku settings
+RAILS_MASTER_KEY (you can get it from master.key file, you need to make it. refer this - https://gist.github.com/db0sch/19c321cbc727917bc0e12849a7565af9)
+AWS_ACCESS_KEY
+AWS_BUCKET
+AWS_SECRET_ACCESS_KEY
+
+After that, go to the project root directory on your local and run command line or terminal.
+
+```bash
+heroku login
+heroku git:remote -a nerd-out
+git push heroku main
+```
+
+Enjoy heroku!
